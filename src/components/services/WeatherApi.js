@@ -3,6 +3,7 @@ import { useCallback } from "react";
 const useWeatherServices=()=>{
   const _apiBase = 'https://api.weatherapi.com/v1/';
   const  _apikey = 'key= 1ff90ee44b664ef785f22329220501 ';
+
   const request=useCallback(async(url,method='GET',body=null,headers={'Content-Type':'application/json'})=>{
 
     try{
@@ -19,7 +20,18 @@ const useWeatherServices=()=>{
   },[])
   const  getWeatherByCity= async(city)=>{
     const res = await request(`${_apiBase}current.json?${_apikey} &q=${city}&aqi=no`)
-    return res.location;
+    return _transformWeather(res);
+  }
+  const _transformWeather=(res)=>{
+    return{
+      name:res.location.name,
+      country:res.location.country,
+      localTime:res.location.localtime,
+      tempC:res.current.temp_c,
+      tempF:res.current.temp_f,
+      condInfo:res.current.condition.text,
+      condImg:res.current.condition.icon
+    }
   }
   return {getWeatherByCity};
 }

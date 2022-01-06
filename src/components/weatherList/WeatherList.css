@@ -1,0 +1,10 @@
+.weatherItem{
+  display:flex;
+  justify-content: space-between;
+  padding:10px;
+  border:1px solid rgb(11, 126, 161);
+  align-items: center; 
+  border-radius:15px;
+  max-width:1200px;
+  margin:15px auto;
+}

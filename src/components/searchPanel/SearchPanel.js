@@ -16,7 +16,9 @@ const SearchPanel=({onUpdateSearch,onUpdateAdd})=>{
     // onUpdateAddLocal(city)
   }
   const searchCity=()=>{
+    
     onUpdateAdd(city);
+    setCity('')
   }
   return(
     <>
