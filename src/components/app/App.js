@@ -3,24 +3,30 @@ import { useState } from "react";
 import SearchPanel from "../searchPanel/SearchPanel";
 import WeatherList from "../weatherList/WeatherList";
 import WeatherByDay from "../weatherByDay/WeatherByDay";
+import { BrowserRouter as Router,Route,Routes} from "react-router-dom";
+import { MainPage,SingleCityWeather } from "../../pages";
+
 const App=()=> {
   
-  const [search,setSearch]=useState('')
-  const [city,setCity]=useState('Erevan')
+  // const [search,setSearch]=useState('')
+  // const [city,setCity]=useState('Erevan')
 
-  const onUpdateSearch = (search) => {
-    setSearch(search);
-  }
-  const onUpdateAdd=(city)=>{
-    console.log(city);
-    setCity(city);
-  }
-  const content= city ? <WeatherList city={city}/>:null;
+  // const onUpdateSearch = (search) => {
+  //   setSearch(search);
+  // }
+  // const onUpdateAdd=(city)=>{
+  //   console.log(city);
+  //   setCity(city);
+  // }
+  // const content= city ? <WeatherList city={city}/>:null;
   return (
     <>
-    {/* <SearchPanel onUpdateSearch={onUpdateSearch} onUpdateAdd={onUpdateAdd}></SearchPanel>
-    {content} */}
-    <WeatherByDay city={city}/>
+    <Router>
+      <Routes>
+        <Route path='/' element={<MainPage/>}/>
+        <Route path='/:city' element={<SingleCityWeather/>}/>
+      </Routes>
+    </Router>
     </>
   );
 }

@@ -2,6 +2,7 @@ import './WeatherList.css'
 import { useEffect ,useState} from "react";
 import useWeatherServices from "../services/WeatherApi";
 import CloseButton from 'react-bootstrap/CloseButton'
+import {Link} from 'react-router-dom';
 
 const WeatherList=({city})=>{
 
@@ -53,7 +54,7 @@ const Elements=data.map((item,id)=>{
 }
 const ListItem=({name,country,localTime,img,tempC,tempF,cityDelete})=>{
   return(
-    
+    <Link to={`/${name}`}>
     <div className='weatherItem'>
       <div>
         <div>City-{name}</div>
@@ -73,6 +74,7 @@ const ListItem=({name,country,localTime,img,tempC,tempF,cityDelete})=>{
       </div>
      
     </div>
+    </Link>
   
   )
 }
