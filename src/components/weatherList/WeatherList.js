@@ -1,6 +1,7 @@
 import './WeatherList.css'
 import { useEffect ,useState} from "react";
 import useWeatherServices from "../services/WeatherApi";
+import CloseButton from 'react-bootstrap/CloseButton'
 
 const WeatherList=({city})=>{
 
@@ -60,12 +61,15 @@ const ListItem=({name,country,localTime,img,tempC,tempF,cityDelete})=>{
          <div>Local Time - {localTime}</div>
       </div>
       <div className='Temp'>
+        <div className='delButton'>
+            <CloseButton onClick={cityDelete} />
+        </div>
          <img src={img} alt='weather img'></img>
         <div>
             <span>{tempC}C° </span>
             <span>{tempF}F° </span>
         </div>
-        <button onClick={cityDelete}>Delate</button>
+       
       </div>
      
     </div>

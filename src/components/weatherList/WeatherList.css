@@ -8,3 +8,10 @@
   max-width:1200px;
   margin:15px auto;
 }
+.weatherItem img{
+  margin-top:-10px;
+}
+
+.delButton{
+  margin-left: 60px;
+}

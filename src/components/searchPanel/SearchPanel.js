@@ -1,4 +1,6 @@
 import { useState } from "react";
+import './SearchPanel.css'
+import Button from 'react-bootstrap/Button'
 
 const SearchPanel=({onUpdateSearch,onUpdateAdd})=>{
   const[search,setSearch]=useState('');
@@ -16,20 +18,19 @@ const SearchPanel=({onUpdateSearch,onUpdateAdd})=>{
     // onUpdateAddLocal(city)
   }
   const searchCity=()=>{
-    
-    onUpdateAdd(city);
+    if (city.length>0) onUpdateAdd(city);
     setCity('')
   }
   return(
     <>
-    <div className="search-panel">
+    {/* <div className="search-panel">
     <h3>Поиск...</h3>
     <input type="text"
            className="search-input"
            placeholder="Search..."
            value={search}
            onChange={onUpdateSearchLocal}/>
-     </div>
+     </div> */}
      <div className="search-panel">
      <h3>Добавление...</h3>
       <input type="text"
@@ -38,9 +39,11 @@ const SearchPanel=({onUpdateSearch,onUpdateAdd})=>{
             value={city}
             onChange={onUpdateAddLocal}
             />
-      <button onClick={searchCity} >Добавить</button>
+      
+      <Button onClick={searchCity} variant="outline-success">Добавить</Button>{' '}
+      
       </div>
-   
+    
       </>
   )
  
