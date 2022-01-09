@@ -16,8 +16,8 @@ const WeatherList=({city})=>{
     
     
   }
-  const cityDelete=(name)=>{
-    setData(data.filter((item)=>(item.name!==name)))
+  const cityDelete=(name,index)=>{
+    setData(data.filter((item,id)=>(id!==index)))
   }
   useEffect(()=>{
     getWeatherByCity(city).then(onCityLoaded)
@@ -42,7 +42,7 @@ const Elements=data.map((item,id)=>{
       img={item.condImg}
       tempC={item.tempC}
       tempF={item.tempF}
-      cityDelete={()=>cityDelete(item.name)}
+      cityDelete={()=>cityDelete(item.name,id)}
       />
     )
   })
@@ -54,13 +54,15 @@ const Elements=data.map((item,id)=>{
 }
 const ListItem=({name,country,localTime,img,tempC,tempF,cityDelete})=>{
   return(
-    <Link to={`/${name}`}>
+    
     <div className='weatherItem'>
+      <Link to={`/${name}`}>
       <div>
         <div>City-{name}</div>
          <div>Country - {country}</div>
          <div>Local Time - {localTime}</div>
-      </div>
+        </div>
+      </Link>                                                                                                                                                                                                                                                                                                                                                                                               
       <div className='Temp'>
         <div className='delButton'>
             <CloseButton onClick={cityDelete} />
@@ -74,7 +76,7 @@ const ListItem=({name,country,localTime,img,tempC,tempF,cityDelete})=>{
       </div>
      
     </div>
-    </Link>
+   
   
   )
 }

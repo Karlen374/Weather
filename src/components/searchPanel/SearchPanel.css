@@ -10,6 +10,7 @@
 .search-panel input{
   background: transparent;
   border:1px solid #fff;
+  border-radius:15px;
   padding: 0.375rem 0.75rem;
   vertical-align: middle;
 }

@@ -11,7 +11,9 @@
 .weatherItem img{
   margin-top:-10px;
 }
-
+.check{
+  text-decoration: none;
+}
 .delButton{
   margin-left: 60px;
 }

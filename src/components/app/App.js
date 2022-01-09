@@ -1,8 +1,5 @@
-import useWeatherServices from "../services/WeatherApi";
-import { useState } from "react";
-import SearchPanel from "../searchPanel/SearchPanel";
-import WeatherList from "../weatherList/WeatherList";
-import WeatherByDay from "../weatherByDay/WeatherByDay";
+
+
 import { BrowserRouter as Router,Route,Routes} from "react-router-dom";
 import { MainPage,SingleCityWeather } from "../../pages";
 
