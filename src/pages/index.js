@@ -1,4 +1,4 @@
 import MainPage from './MainPage';
 import SingleCityWeather from './SingleCityWeather';
-
-export {MainPage,SingleCityWeather};
+import ExchangeValuePage from './ExchangeValuePage'
+export {MainPage,SingleCityWeather,ExchangeValuePage};
