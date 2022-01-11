@@ -18,8 +18,9 @@ const App=()=> {
   // const content= city ? <WeatherList city={city}/>:null;
   return (
     <>
-    {/* <AppHeader/> */}
+
     <Router>
+          <AppHeader/>
       <Routes>
         <Route path='/' element={<MainPage/>}/>
         <Route path='/:city' element={<SingleCityWeather/>}/>
