@@ -44,19 +44,32 @@ const useWeatherServices=()=>{
     // for(let i=0;i<2;i++){
     //   arr[i]=res.forecast.forecastday[i+1].day.maxtemp_c;
     // }
-    // console.log(arr)
-    console.log(res)
+    console.log(res);
+    console.log(`res=${res}`)
     return{
       name:res.location.name,
       country:res.location.country,
       localTime:res.location.localtime,
       // dayMaxTempC:arr,
+      lat: res.location.lat,
+      lon:res.location.lon,
+
       day:res.forecast.forecastday[0].date,
       day1:res.forecast.forecastday[1].date,
       day2:res.forecast.forecastday[2].date,
       dayMaxTempC:res.forecast.forecastday[0].day.maxtemp_c,
       day1MaxTempC:res.forecast.forecastday[1].day.maxtemp_c,
-      day2MaxTempC:res.forecast.forecastday[2].day.maxtemp_c,
+      day2MaxTempC: res.forecast.forecastday[2].day.maxtemp_c,
+      
+      sunrise1:res.forecast.forecastday[0].astro.sunrise,
+      sunrise2:res.forecast.forecastday[1].astro.sunrise,
+      sunrise3:res.forecast.forecastday[2].astro.sunrise,
+
+      sunset1: res.forecast.forecastday[0].astro.sunset,
+      sunset2: res.forecast.forecastday[1].astro.sunset,
+      sunset3: res.forecast.forecastday[2].astro.sunset,
+
+
       
       dayMinTempC:res.forecast.forecastday[0].day.mintemp_c,
       day1MinTempC:res.forecast.forecastday[1].day.mintemp_c,

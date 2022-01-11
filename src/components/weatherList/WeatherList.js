@@ -10,11 +10,9 @@ const WeatherList=({city})=>{
   const {getWeatherByCity}=useWeatherServices();
 
   const onCityLoaded=(city)=>{
-    console.log(city)
+    //console.log(city)
     setData([...data,city]);
-    console.log(data)
-    
-    
+    //console.log(data)
   }
   const cityDelete=(name,index)=>{
     setData(data.filter((item,id)=>(id!==index)))
@@ -32,7 +30,7 @@ const WeatherList=({city})=>{
 
 const ItemsList=({data,cityDelete})=>{
   console.log(data)
-const Elements=data.map((item,id)=>{
+  const Elements=data.map((item,id)=>{
     return(
       <ListItem
       key={id}
