@@ -1,10 +1,11 @@
 header{
   background-color: #E0E5FF;
-  min-height:50px;
+  min-height:100px;
 }
 ul{
   display:flex;
-  justify-content: space-between;
+  justify-content: right;
+  margin-right: 30px;
 }
 li{
   list-style-type: none;

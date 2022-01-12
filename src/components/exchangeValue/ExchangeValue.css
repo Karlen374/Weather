@@ -1,1 +1,43 @@
+.convertBlock{
   
+  display:flex;
+  justify-content: space-evenly;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+button{
+  background-color: #fff;
+  padding:5px 20px;
+  border-radius: 50px;
+  border:1px solid black;
+  
+  
+}
+.convert{
+  display:block;
+  padding:50px;
+  border:1px solid black;
+  border-radius:15px;
+  max-width: 1000px;
+  margin:20px auto;
+}
+button{
+ 
+  margin-top:50px;
+}
+.convert-input{
+  padding:10px;
+ 
+}
+input{
+  display:block;
+  
+}
+
+select{
+  display:block;
+  padding:10px;
+}
+
