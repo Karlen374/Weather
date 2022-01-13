@@ -62,14 +62,9 @@ const useWeatherServices=()=>{
       day2MaxTempC: res.forecast.forecastday[2].day.maxtemp_c,
       
       sunrise1:res.forecast.forecastday[0].astro.sunrise,
-      sunrise2:res.forecast.forecastday[1].astro.sunrise,
-      sunrise3:res.forecast.forecastday[2].astro.sunrise,
+
 
       sunset1: res.forecast.forecastday[0].astro.sunset,
-      sunset2: res.forecast.forecastday[1].astro.sunset,
-      sunset3: res.forecast.forecastday[2].astro.sunset,
-
-
       
       dayMinTempC:res.forecast.forecastday[0].day.mintemp_c,
       day1MinTempC:res.forecast.forecastday[1].day.mintemp_c,

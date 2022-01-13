@@ -1,4 +1,5 @@
 import './ExchangeValue.css'
+import Spinner from 'react-bootstrap/Spinner'
 import useConversionServices from '../services/ConversionApi';
 import { useState } from 'react';
 
@@ -9,8 +10,11 @@ const [updateCurrency,setUpdateCurrency]=useState('');
 const {getConvertValue}=useConversionServices();
 const [inputVal,setInputVal]=useState('USD');
 const [convertVal,setConvertVal]=useState('RUB')
+const [spinner,setSpinner]=useState(false);
+const [result,setResult]=useState(false)
 
 const request=()=>{
+  setSpinner(true);
   getConvertValue(inputVal).then(Load)
 }
 const changeInputVal=(e)=>{
@@ -22,13 +26,17 @@ const changeConvertVal=(e)=>{
 const onUpdateLocal=(e)=>{
   const currency=e.target.value;
   setCurrency(currency);
+  setResult(false);
 }
 const Load=(res)=>{
   //console.log(res.data)
   const coefficient=res.data[convertVal]
   setUpdateCurrency(currency*coefficient);
+  setSpinner(false)
+  setResult(true)
 }
-const content=(currency && updateCurrency)?<Result currency={currency} inputVal={inputVal} updateCurrency={updateCurrency} convertVal={convertVal}/>:null;
+const spinnerView=spinner?  <Spinner animation="border" size='sm' variant="dark" />:null;
+const content=result?<Result currency={currency} inputVal={inputVal} updateCurrency={updateCurrency} convertVal={convertVal}/>:null;
   return(
     <div className='convert'>
     <div className='convertBlock'>
@@ -49,9 +57,8 @@ const content=(currency && updateCurrency)?<Result currency={currency} inputVal=
             placeholder="..."
             value={currency}
             onChange={onUpdateLocal}
-            
             />
-    </label>        
+    </label>   
             <label> To
      <select value={convertVal} onChange={changeConvertVal}>
         <option value='USD'>USD $</option>
@@ -65,7 +72,7 @@ const content=(currency && updateCurrency)?<Result currency={currency} inputVal=
     
     </div>
     <div className='convertResult'>
-      <button onClick={request}>Convert</button>
+      <button onClick={request}>Convert {spinnerView} </button>
       {content}
     </div>
     </div>
