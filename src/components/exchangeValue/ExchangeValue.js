@@ -21,9 +21,9 @@ const request=()=>{
 
  useEffect(()=>{
   request();
- },[convertVal,inputVal])
+ },[convertVal,inputVal,currency])
 
- 
+
 const changeInputVal=(e)=>{
   setInputVal(e.target.value)
   
@@ -58,7 +58,7 @@ const content=result?<Result currency={currency} inputVal={inputVal} updateCurre
         <option value='JPY'>JPY ¥</option>
         <option value='BRL'>BRL R$</option>
         <option value='AMD'>AMD ֏</option>
-        
+
     </select>
     </label>
     <label>Amount
