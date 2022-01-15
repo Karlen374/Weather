@@ -2,17 +2,18 @@ import './ExchangeValue.css'
 import Spinner from 'react-bootstrap/Spinner'
 import useConversionServices from '../services/ConversionApi';
 import { useState ,useEffect} from 'react';
+import GraphValue from '../graphValue/GraphValue';
 
 const ExchangeValue=()=>{
 
 const [currency,setCurrency]=useState('');
 const [updateCurrency,setUpdateCurrency]=useState('');
-const {getConvertValue}=useConversionServices();
+const {getConvertValue,getHistoricalRates}=useConversionServices();
 const [inputVal,setInputVal]=useState('USD');
 const [convertVal,setConvertVal]=useState('RUB')
 const [spinner,setSpinner]=useState(false);
 const [result,setResult]=useState(false)
-
+const [history,setHistory]=useState('USD')
 const request=()=>{
   setSpinner(true);
   console.log('request')
@@ -48,6 +49,7 @@ const Load=(res)=>{
 const spinnerView=spinner?  <Spinner animation="border" size='sm' variant="dark" />:null;
 const content=result?<Result currency={currency} inputVal={inputVal} updateCurrency={updateCurrency} convertVal={convertVal}/>:null;
   return(
+    <>
     <div className='convert'>
     <div className='convertBlock'>
       <label>From
@@ -86,6 +88,9 @@ const content=result?<Result currency={currency} inputVal={inputVal} updateCurre
       {content}
     </div>
     </div>
+    
+    <GraphValue/>
+    </>
   )
 }
 
