@@ -1,7 +1,7 @@
 import './ExchangeValue.css'
 import Spinner from 'react-bootstrap/Spinner'
 import useConversionServices from '../services/ConversionApi';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 
 const ExchangeValue=()=>{
 
@@ -15,13 +15,23 @@ const [result,setResult]=useState(false)
 
 const request=()=>{
   setSpinner(true);
+  console.log('request')
   getConvertValue(inputVal).then(Load)
 }
+
+ useEffect(()=>{
+  request();
+ },[convertVal,inputVal])
+
+ 
 const changeInputVal=(e)=>{
   setInputVal(e.target.value)
+  
+  
 }
 const changeConvertVal=(e)=>{
   setConvertVal(e.target.value)
+  
 }
 const onUpdateLocal=(e)=>{
   const currency=e.target.value;
@@ -72,7 +82,7 @@ const content=result?<Result currency={currency} inputVal={inputVal} updateCurre
     
     </div>
     <div className='convertResult'>
-      <button onClick={request}>Convert {spinnerView} </button>
+      <button onClick={request}> Convert {spinnerView} </button>
       {content}
     </div>
     </div>
