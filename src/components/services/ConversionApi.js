@@ -23,7 +23,7 @@ const useConversionServices=()=>{
     const res= await request(`${_apiBase}apikey=${_apikey}&base_currency=${base_currency}`)
     return res
   }
-  const getHistoricalRates=async(base_currency='USD',date_from='2018-10-01',date_to='2022-01-15')=>{
+  const getHistoricalRates=async(base_currency='USD',date_from='2018-12-01',date_to='2022-01-15')=>{
     const res=await request(`https://freecurrencyapi.net/api/v2/historical?apikey=${_apikey}&base_currency=${base_currency}&date_from=${date_from}&date_to=${date_to}`)
     return res
   }
