@@ -7,12 +7,13 @@ import {LineChart,Line,ResponsiveContainer,AreaChart,Tooltip,XAxis,YAxis,Area,Ca
 const GraphValue=()=>{
   const {getHistoricalRates}=useConversionServices()
   const [data,setData]=useState([])
-  const [inputVal,setInputVal]=useState('RUB')
-  const [interval,setInterval]=useState()
+  const [inputVal,setInputVal]=useState()
+  const [period,setPeriod]=useState()
 
   useEffect(()=>{
-    getHistoricalRates().then(LoadHistory)
-  },[])
+    getHistoricalRates('USD',period).then(LoadHistory)
+    console.log(period)
+  },[inputVal,period])
 
   const LoadHistory=(res)=>{
     //console.log(Object.keys(res.data).length);
@@ -22,7 +23,7 @@ const GraphValue=()=>{
     for(let key in res.data){
       arr[i]={
         date:key,
-        value:res.data[key].RUB
+        value:res.data[key][inputVal]
       }
       i++;
       
@@ -32,22 +33,27 @@ const GraphValue=()=>{
     setData(arr)
     console.log(data)
   }
+  const changeValue=(e)=>{
+    setInputVal(e.target.value)
+  }
+  const changePeriod=(e)=>{
+    setPeriod(e.target.value)
+  }
   return(
     <>
     <div>
-    <select value={inputVal} >
+    <select value={inputVal} onChange={changeValue}>
         <option value='USD'>USD $</option>
         <option value='RUB'>RUB ₽</option>
         <option value='EUR'>EUR €</option>
         <option value='JPY'>JPY ¥</option>
         <option value='BRL'>BRL R$</option>
         <option value='AMD'>AMD ֏</option>
-
     </select>
-    <select value={interval}>
-      <option >Month</option>
-      <option >Year</option>
-      <option >For all the time</option>
+    <select value={period} onChange={changePeriod}>
+      <option value='2021-12-17'>Month</option>
+      <option value='2021-01-17'>Year</option>
+      <option value='2018-01-01'>Max</option>
     </select>
     </div>
         <LineChart
