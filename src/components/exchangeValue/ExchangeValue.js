@@ -6,7 +6,7 @@ import GraphValue from '../graphValue/GraphValue';
 
 const ExchangeValue=()=>{
 
-const [currency,setCurrency]=useState('');
+const [currency,setCurrency]=useState('1');
 const [updateCurrency,setUpdateCurrency]=useState('');
 const {getConvertValue}=useConversionServices();
 const [inputVal,setInputVal]=useState('USD');
