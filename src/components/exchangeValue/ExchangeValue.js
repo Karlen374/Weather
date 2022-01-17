@@ -8,12 +8,12 @@ const ExchangeValue=()=>{
 
 const [currency,setCurrency]=useState('');
 const [updateCurrency,setUpdateCurrency]=useState('');
-const {getConvertValue,getHistoricalRates}=useConversionServices();
+const {getConvertValue}=useConversionServices();
 const [inputVal,setInputVal]=useState('USD');
 const [convertVal,setConvertVal]=useState('RUB')
 const [spinner,setSpinner]=useState(false);
 const [result,setResult]=useState(false)
-const [history,setHistory]=useState('USD')
+
 const request=()=>{
   setSpinner(true);
   console.log('request')

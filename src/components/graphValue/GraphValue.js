@@ -9,11 +9,12 @@ const GraphValue=()=>{
   const [data,setData]=useState([])
   const [inputVal,setInputVal]=useState()
   const [period,setPeriod]=useState()
-
+  const [convertVal, setConvertVal] = useState()
+  
   useEffect(()=>{
-    getHistoricalRates('USD',period).then(LoadHistory)
+    getHistoricalRates(inputVal,period).then(LoadHistory)
     console.log(period)
-  },[inputVal,period])
+  },[inputVal,period,convertVal])
 
   const LoadHistory=(res)=>{
     //console.log(Object.keys(res.data).length);
@@ -33,16 +34,39 @@ const GraphValue=()=>{
     setData(arr)
     console.log(data)
   }
-  const changeValue=(e)=>{
+  const changeInputValue=(e)=>{
     setInputVal(e.target.value)
+  }
+  const changeConvertValue = (e) => {
+    setConvertVal(e.target.value)
   }
   const changePeriod=(e)=>{
     setPeriod(e.target.value)
   }
   return(
     <>
-    <div>
-    <select value={inputVal} onChange={changeValue}>
+    <h2>Charts</h2>
+    <div className='graphBlock'>
+     <label> From
+    <select value={inputVal} onChange={changeInputValue}>
+        <option value='USD'>USD $</option>
+        <option value='RUB'>RUB ₽</option>
+        <option value='EUR'>EUR €</option>
+        <option value='JPY'>JPY ¥</option>
+        <option value='BRL'>BRL R$</option>
+        <option value='AMD'>AMD ֏</option>
+        </select>
+    </label>
+
+     <label>
+    <select value={period} onChange={changePeriod}>
+      <option value='2021-12-17'>Month</option>
+      <option value='2021-01-17'>Year</option>
+      <option value='2017-01-01'>Max</option>
+    </select>  
+    </label>
+    <label>To
+    <select value={convertVal} onChange={changeConvertValue}>
         <option value='USD'>USD $</option>
         <option value='RUB'>RUB ₽</option>
         <option value='EUR'>EUR €</option>
@@ -50,24 +74,28 @@ const GraphValue=()=>{
         <option value='BRL'>BRL R$</option>
         <option value='AMD'>AMD ֏</option>
     </select>
-    <select value={period} onChange={changePeriod}>
-      <option value='2021-12-17'>Month</option>
-      <option value='2021-01-17'>Year</option>
-      <option value='2018-01-01'>Max</option>
-    </select>
+    </label>
     </div>
-        <LineChart
-  width={800}
-  height={400}
-  data={data}
-  margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
->
-  <XAxis dataKey="date" />
-  <YAxis dataKey="value"/>
-  <Tooltip />
-  <CartesianGrid stroke="#f5f5f5" />
-  <Line type="monotone" dataKey="value" stroke="#ff7300" yAxisId={0} />
-</LineChart> 
+        
+<div style={{ width: '100%', height: 400 }}>
+<ResponsiveContainer>
+  <AreaChart
+    data={data}
+    margin={{
+      top: 10,
+      right: 30,
+      left: 0,
+      bottom: 0,
+    }}
+  >
+    <CartesianGrid strokeDasharray="3 3" />
+    <XAxis dataKey="date" />
+    <YAxis />
+    <Tooltip />
+    <Area type="monotone" dataKey="value" stroke="#8884d8" fill="#8884d8" />
+  </AreaChart>
+</ResponsiveContainer>
+</div>
     </>
 
   )
