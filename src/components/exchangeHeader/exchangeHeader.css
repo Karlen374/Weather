@@ -1,0 +1,19 @@
+.exchangeHeader{
+  display:flex;
+  background-color: rgb(105, 147, 226);
+  justify-content: center;
+  padding: 12px 0;
+  color:black;
+}
+.path{
+  
+  margin-left: 10px;
+  color:#fff;
+  border:1px solid #fff;
+  padding:5px 15px;
+  border-radius:5px;
+}
+.path:hover{
+  background-color: rgb(28, 119, 66);
+  border:1px solid black;
+}

@@ -1,6 +1,7 @@
 import ExchangeValue from "../components/exchangeValue/ExchangeValue";
 import { Helmet } from "react-helmet";
 
+
 const ExchangeValuePage=()=>{
   return(
     <>
@@ -11,6 +12,7 @@ const ExchangeValuePage=()=>{
             />
           <title>Currency convert</title>
       </Helmet>
+     
     <ExchangeValue/>
     </>
     

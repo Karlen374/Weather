@@ -1,6 +1,6 @@
 header{
   background-color: #E0E5FF;
-  min-height:100px;
+  padding:15px;
 }
 ul{
   display:flex;

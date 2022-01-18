@@ -25,3 +25,6 @@
  justify-content: center;
  margin-top: 150px;
 }
+.weatherBlock span{
+  display:block;
+}

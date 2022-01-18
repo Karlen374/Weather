@@ -2,7 +2,8 @@ import './ExchangeValue.css'
 import Spinner from 'react-bootstrap/Spinner'
 import useConversionServices from '../services/ConversionApi';
 import { useState ,useEffect} from 'react';
-import GraphValue from '../graphValue/GraphValue';
+import ExchangeHeader from '../exchangeHeader/exchangeHeader';
+
 
 const ExchangeValue=()=>{
 
@@ -16,7 +17,6 @@ const [result,setResult]=useState(false)
 
 const request=()=>{
   setSpinner(true);
-  console.log('request')
   getConvertValue(inputVal).then(Load)
 }
 
@@ -24,15 +24,11 @@ const request=()=>{
   request();
  },[convertVal,inputVal,currency])
 
-
 const changeInputVal=(e)=>{
   setInputVal(e.target.value)
-  
-  
 }
 const changeConvertVal=(e)=>{
   setConvertVal(e.target.value)
-  
 }
 const onUpdateLocal=(e)=>{
   const currency=e.target.value;
@@ -40,7 +36,7 @@ const onUpdateLocal=(e)=>{
   setResult(false);
 }
 const Load=(res)=>{
-  //console.log(res.data)
+  
   const coefficient=res.data[convertVal]
   setUpdateCurrency(currency*coefficient);
   setSpinner(false)
@@ -50,6 +46,8 @@ const spinnerView=spinner?  <Spinner animation="border" size='sm' variant="dark"
 const content=result?<Result currency={currency} inputVal={inputVal} updateCurrency={updateCurrency} convertVal={convertVal}/>:null;
   return(
     <>
+    <ExchangeHeader/>
+    <h2>Convert</h2>
     <div className='convert'>
     <div className='convertBlock'>
       <label>From
@@ -89,7 +87,7 @@ const content=result?<Result currency={currency} inputVal={inputVal} updateCurre
     </div>
     </div>
     
-    <GraphValue/>
+  
     </>
   )
 }

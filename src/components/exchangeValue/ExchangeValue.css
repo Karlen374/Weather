@@ -7,11 +7,12 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
-button{
+.convertResult button{
   background-color: #fff;
   padding:5px 20px;
   border-radius: 50px;
   border:1px solid black;
+  margin-top:50px;
   
   
 }
@@ -24,10 +25,7 @@ button{
   max-width: 1000px;
   margin:20px auto;
 }
-button{
- 
-  margin-top:50px;
-}
+
 .convert-input{
   padding:10px;
  

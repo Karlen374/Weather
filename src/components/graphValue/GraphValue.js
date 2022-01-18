@@ -3,20 +3,23 @@ import useConversionServices from '../services/ConversionApi';
 import './GraphValue.css'
 import {ResponsiveContainer,AreaChart,Tooltip,XAxis,YAxis,Area,CartesianGrid} from 'recharts'
 import Spinner from 'react-bootstrap/Spinner'
+import ExchangeHeader from '../exchangeHeader/exchangeHeader';
 
 const GraphValue=()=>{
   const {getHistoricalRates,getConvertValue}=useConversionServices()
   const [data,setData]=useState([])
   const [currency,setCurrency]=useState([])
   const [inputVal,setInputVal]=useState('RUB')
-  const [period,setPeriod]=useState('2021-01-17')
+  const [period,setPeriod]=useState('2017-01-01')
   const [convertVal, setConvertVal] = useState('USD')
   const [spinner,setSpinner]=useState(false)
   
 
   const request=()=>{
     setSpinner(true)
-    getHistoricalRates(convertVal,period).then(LoadHistory)
+    let d = new Date();
+    const dateTo=(d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'))
+    getHistoricalRates(convertVal,period,dateTo).then(LoadHistory)
     getConvertValue(convertVal).then(LoadCurrency)
   }
   
@@ -51,14 +54,32 @@ const GraphValue=()=>{
     setConvertVal(e.target.value)
   }
 
+  const dateFunc=(date)=>{
+    const d=new Date(date)
+    return (d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'))
+  }
   const changePeriod=(e)=>{
-    setPeriod(e.target.value)
+    let d=new Date();
+    switch(e.target.value){
+      case'1':
+        const date=new Date(d.setMonth(-1));
+        setPeriod(dateFunc(date));
+        break;
+      case'2':
+        const date1=new Date(d.setMonth(-12));
+        setPeriod(dateFunc(date1));
+        break;
+      case'2017-01-01':
+        setPeriod('2017-01-01')
+        break;
+    } 
   }
 
   const Content=spinner?<div className='SpinnerBlock'><Spinner animation="grow" /> | <Spinner animation="grow" /> | <Spinner animation="grow" /></div>:<View data={data}/>;
   const Convert=spinner?<div className='SpinnerBlock'><Spinner animation="border" size="sm" /></div>:<div className='valueInfo'>1 {convertVal}={currency} {inputVal} </div>;
   return(
     <>
+    <ExchangeHeader/>
     <h2>Charts</h2>
     {Convert}
     <div className='graphBlock'>
@@ -75,8 +96,8 @@ const GraphValue=()=>{
 
      <label>
     <select value={period} onChange={changePeriod}>
-      <option value='2021-12-17'>Month</option>
-      <option value='2021-01-17'>Year</option>
+      <option value='1'>Month</option>
+      <option value='2'>Year</option>
       <option value='2017-01-01'>Max</option>
     </select>  
     </label>
@@ -100,7 +121,7 @@ const GraphValue=()=>{
 }
 const View=({data})=>{
   return(
-    <div style={{ width: '100%', height: 400 }}>
+    <div style={{ width: '100%', height: 450 }}>
     <ResponsiveContainer>
       <AreaChart
         data={data}

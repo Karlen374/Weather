@@ -50,14 +50,14 @@ const View=({data})=>{
     <div className="weatherByDays">
         <div className="weatherBlock">
           <h4>Date: {data.day1} </h4>
-          <span>Max Temp {data.day1MaxTempC}</span>
-          <span>Min Temp {data.day1MinTempC}</span>
+          <span>Max Temp {data.day1MaxTempC}C°</span>
+          <span>Min Temp {data.day1MinTempC}C°</span>
         </div>
         <div className="weatherBlock">
           <h4>Date: {data.day2}</h4>
-          <span>Max Temp {data.day2MaxTempC}</span>
+          <span>Max Temp {data.day2MaxTempC}C°</span>
           
-          <span>Min Temp {data.day2MinTempC}</span>
+          <span>Min Temp {data.day2MinTempC}C°</span>
         </div>
     </div>
   </div>

@@ -4,17 +4,16 @@ import useWeatherServices from "../services/WeatherApi";
 import CloseButton from 'react-bootstrap/CloseButton'
 import {Link} from 'react-router-dom';
 
+
 const WeatherList=({city})=>{
 
   const [data,setData]=useState([]);
   const {getWeatherByCity}=useWeatherServices();
 
   const onCityLoaded=(city)=>{
-    //console.log(city)
     setData([...data,city]);
-    //console.log(data)
   }
-  const cityDelete=(name,index)=>{
+  const cityDelete=(index)=>{
     setData(data.filter((item,id)=>(id!==index)))
   }
   useEffect(()=>{
@@ -40,7 +39,7 @@ const ItemsList=({data,cityDelete})=>{
       img={item.condImg}
       tempC={item.tempC}
       tempF={item.tempF}
-      cityDelete={()=>cityDelete(item.name,id)}
+      cityDelete={()=>cityDelete(id)}
       />
     )
   })
@@ -54,16 +53,20 @@ const ListItem=({name,country,localTime,img,tempC,tempF,cityDelete})=>{
   return(
     
     <div className='weatherItem'>
-      <Link to={`/${name}`}>
-      <div>
+        
+      <div className='cityInformation'>
         <div>City-{name}</div>
          <div>Country - {country}</div>
          <div>Local Time - {localTime}</div>
-        </div>
-      </Link>                                                                                                                                                                                                                                                                                                                                                                                               
+      </div>
+        
+                                                                                                                                                                                                                                                                                                                                                                                                  
       <div className='Temp'>
         <div className='delButton'>
             <CloseButton onClick={cityDelete} />
+            <Link style={{'text-decoration':'none'}}  to={`/${name}`}>
+                  <button className='info'> ↗</button>
+            </Link> 
         </div>
          <img src={img} alt='weather img'></img>
         <div>

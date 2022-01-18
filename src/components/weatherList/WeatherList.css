@@ -17,3 +17,18 @@
 .delButton{
   margin-left: 60px;
 }
+.cityInformation{
+  color:black;
+  border-radius: 5px;
+}
+.info{
+  margin-bottom:5px;
+  background-color: #fff;
+  border-radius:50px;
+  border:1px solid black;
+}
+.info:hover{
+  background-color: rgb(74, 153, 107);
+  color:#fff;
+}
+
