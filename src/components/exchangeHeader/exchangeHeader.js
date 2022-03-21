@@ -4,12 +4,13 @@ import {Link } from "react-router-dom";
 const ExchangeHeader=()=>{
   return(
   <div className='exchangeHeader'>
-  <Link style={{'text-decoration':'none'}} to={`/exchange`}>
+    <h2>Convert</h2>
+  {/* <Link style={{'text-decoration':'none'}} to={`/exchange`}>
       <div className='path'>Convert</div>
-  </Link>
-  <Link style={{'text-decoration':'none'}}  to={`/exchange/graph`}>
+  </Link> */}
+  {/* <Link style={{'text-decoration':'none'}}  to={`/exchange/graph`}>
     <div className='path'>Charts</div>
-  </Link>
+  </Link> */}
   </div>
   )
 }

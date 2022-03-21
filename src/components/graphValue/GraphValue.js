@@ -28,6 +28,7 @@ const GraphValue=()=>{
   },[inputVal,period,convertVal])
 
   const LoadHistory=(res)=>{
+    console.log(res.data)
     const arr=[];
     let i=0;
     for(let key in res.data){
@@ -41,7 +42,7 @@ const GraphValue=()=>{
     setSpinner(false)
   }
   const LoadCurrency=(res)=>{
-    const coefficient=res.data[inputVal]
+    const coefficient=res.data[inputVal].value
     setCurrency(coefficient);
     console.log(`1 ${inputVal}=${coefficient} ${convertVal}`)
   }

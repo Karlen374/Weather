@@ -35,19 +35,21 @@ const onUpdateLocal=(e)=>{
   setCurrency(currency);
   setResult(false);
 }
+
 const Load=(res)=>{
-  
-  const coefficient=res.data[convertVal]
+
+  const coefficient=res.data[convertVal].value
   setUpdateCurrency(currency*coefficient);
   setSpinner(false)
   setResult(true)
 }
+
 const spinnerView=spinner?  <Spinner animation="border" size='sm' variant="dark" />:null;
 const content=result?<Result currency={currency} inputVal={inputVal} updateCurrency={updateCurrency} convertVal={convertVal}/>:null;
-  return(
+  
+return(
     <>
     <ExchangeHeader/>
-    <h2>Convert</h2>
     <div className='convert'>
     <div className='convertBlock'>
       <label>From
